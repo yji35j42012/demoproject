@@ -16,19 +16,17 @@ body {
 	position: relative;
 	width: 100%;
 	padding-bottom: 17px;
-	// height: 50px;
 	background-color: #eeca56;
 
-	// background-image: url('../../images/header.jpg');
-	// background-repeat: no-repeat;
-	// background-position: top right;
-	// background-size: cover;
-	// .header_bg
 	&_bg {
 		position: absolute;
 		top: 0;
 		right: 0;
 		width: 100%;
+	}
+
+	&.tagFitler {
+		min-height: 144px;
 	}
 }
 
@@ -68,6 +66,7 @@ body {
 }
 
 .searchInp {
+	flex: none;
 	position: relative;
 	display: block;
 	width: 100%;
@@ -249,7 +248,7 @@ body {
 		// .content_item_detail
 		&_detail {
 			max-width: 385px;
-			height: 44px;
+			min-height: 44px;
 			margin-top: 10px;
 			color: rgba(132, 121, 86, 0.8);
 			font-size: 13px;
@@ -322,13 +321,20 @@ body {
 	width: 12px;
 	height: 12px;
 	background: url('../../images/icon_collect.svg')no-repeat center/contain;
+
+	&.on {
+		background-image: url('../../images/icon_collect_on.svg');
+	}
 }
 
 
 .leftNav {
+	overflow: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
+	@include d_f(flex);
+	flex-direction: column;
 	width: 225px;
 	height: 100%;
 	padding: 14px 12px;
@@ -342,6 +348,7 @@ body {
 
 	// .leftNav_back
 	&_back {
+		flex: none;
 		width: 18px;
 		height: 18px;
 		background: url('../../images/icon_arr_left.svg')no-repeat center/contain;
@@ -357,6 +364,7 @@ body {
 
 	// .leftNav_group
 	&_group {
+		overflow-y: auto;
 		margin-top: 6px;
 	}
 
@@ -383,9 +391,13 @@ body {
 }
 
 .create {
+	@include d_f(flex);
+	flex-direction: column;
+	height: 100%;
 
 	// .create_head
 	&_head {
+		flex: none;
 		@include d_f(flex, space-between, center);
 		width: 100%;
 		height: 50px;
@@ -402,6 +414,7 @@ body {
 
 	// .create_body
 	&_body {
+		flex: 1 1 100%;
 		padding-top: 34px;
 	}
 
@@ -409,6 +422,7 @@ body {
 	&_identity {
 		@include d_f(flex);
 		padding: 0 22px;
+
 		// .create_identity_pic
 		&_pic {
 			flex: none;
@@ -443,6 +457,118 @@ body {
 			}
 		}
 	}
+
+	// .create_h1
+	&_h1 {
+		display: block;
+		margin-top: 14px;
+		padding: 0 22px;
+
+		input {
+			height: 40px;
+			font-size: 24px;
+			font-weight: 700;
+		}
+
+		input::placeholder {
+			color: rgba(190, 192, 194, 0.67);
+		}
+
+		input::-webkit-input-placeholder {
+			color: rgba(190, 192, 194, 0.67);
+		}
+
+		input:-ms-input-placeholder {
+			color: rgba(190, 192, 194, 0.67);
+		}
+
+		input::-moz-placeholder {
+			color: rgba(190, 192, 194, 0.67);
+			opacity: 1;
+		}
+	}
+
+	// .create_text
+	&_text {
+		display: block;
+		margin-top: 10px;
+		padding: 0 22px;
+
+		span {
+			display: block;
+			font-weight: 700;
+			font-size: 18px;
+			color: rgba(0, 0, 0, 1);
+			line-height: 40px;
+		}
+
+		textarea {
+			width: 100%;
+			height: 130px;
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 21px;
+			resize: none;
+		}
+
+		textarea::placeholder {
+			color: rgba(190, 192, 194, 0.67);
+		}
+
+		textarea::-webkit-input-placeholder {
+			color: rgba(190, 192, 194, 0.67);
+		}
+
+		textarea:-ms-input-placeholder {
+			color: rgba(190, 192, 194, 0.67);
+		}
+
+		textarea::-moz-placeholder {
+			color: rgba(190, 192, 194, 0.67);
+			opacity: 1;
+		}
+	}
+
+	// .create_hash
+	&_hash {
+		display: block;
+		margin-top: 10px;
+		padding: 0 22px;
+
+		span {
+			display: block;
+			font-weight: 700;
+			font-size: 18px;
+			color: rgba(0, 0, 0, 1);
+			line-height: 40px;
+		}
+
+		input {
+			width: 100%;
+			height: 40px;
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 21px;
+			resize: none;
+		}
+
+		input::placeholder {
+			color: rgba(190, 192, 194, 0.67);
+		}
+
+		input::-webkit-input-placeholder {
+			color: rgba(190, 192, 194, 0.67);
+		}
+
+		input:-ms-input-placeholder {
+			color: rgba(190, 192, 194, 0.67);
+		}
+
+		input::-moz-placeholder {
+			color: rgba(190, 192, 194, 0.67);
+			opacity: 1;
+		}
+	}
 }
 
 .icon_close {
@@ -455,4 +581,377 @@ body {
 	width: 30px;
 	height: 30px;
 	background: url('../../images/icon_arr_right.svg')no-repeat center/contain;
+}
+
+.discussion {
+	@include d_f(flex);
+	flex-direction: column;
+
+	// .discussion_head
+	&_head {
+		flex: none;
+		@include d_f(flex, none, center);
+		width: 100%;
+		height: 50px;
+		padding: 0 20px;
+		background-color: #eeca56;
+
+		.icon_back {
+			background-size: 25px;
+		}
+	}
+
+	// .discussion_title
+	.discussion_title {
+		margin-right: auto;
+		font-weight: 700;
+		font-size: 18px;
+		color: rgba(0, 0, 0, 1);
+	}
+
+	// .discussion_body
+	&_body {
+		overflow-y: auto;
+		flex: 1 1 100%;
+		padding: 24px 0 0;
+	}
+
+	// .discussion_h1
+	&_h1 {
+		@include d_f(flex);
+		padding: 0 22px;
+
+		span {
+			flex: 1 1 auto;
+			font-size: 24px;
+			font-weight: 700;
+			line-height: 40px;
+		}
+	}
+
+	// .discussion_iconBox
+	&_iconBox {
+		flex: none;
+		@include d_f(flex, none, center);
+		height: 40px;
+		margin-left: auto;
+
+		.icon_collect {
+			width: 33px;
+			height: 33px;
+			background-size: 24px;
+		}
+
+		.icon_heart {
+			background-size: 21px;
+		}
+	}
+
+	// .discussion_identity
+	&_identity {
+		@include d_f(flex);
+		margin-top: 14px;
+		padding: 0 22px;
+
+		// .discussion_identity_pic
+		&_pic {
+			position: relative;
+			display: block;
+			width: 36px;
+			height: 36px;
+			margin-right: 12px;
+			background-color: var(--bg);
+			border-radius: 100%;
+
+			&::after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				content: attr(data-txt);
+				@include d_f(flex, center, center);
+				width: 100%;
+				height: 100%;
+				margin: auto;
+				color: rgba(68, 68, 67, 1);
+				font-size: 24px;
+				font-weight: 600;
+				transform: scale(0.8);
+			}
+		}
+
+		// .discussion_identity_info
+		&_info {
+			.name {
+				font-size: 18px;
+				font-weight: 700;
+				line-height: 21.78px;
+				color: rgba(0, 0, 0, 1);
+			}
+
+			.date {
+				font-size: 13px;
+				font-weight: 400;
+				line-height: 15.73px;
+				color: rgba(190, 192, 194, 0.67);
+			}
+		}
+	}
+
+	// .discussion_content
+	&_content {
+		margin-top: 20px;
+		padding: 0 22px;
+
+		span {
+			display: block;
+			line-height: 40px;
+			font-size: 18px;
+			font-weight: 700;
+			line-height: 21.78px;
+			color: rgba(0, 0, 0, 1);
+		}
+
+		textarea {
+			width: 100% !important;
+			height: 150px;
+			margin-top: 14px;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 16.94px;
+			color: rgba(0, 0, 0, 1);
+			resize: none;
+		}
+	}
+
+	// .discussion_func
+	&_func {
+		padding: 14px 22px;
+		margin-top: 45px;
+		border-top: 1px solid rgba(211, 213, 214, 1);
+		border-bottom: 1px solid rgba(211, 213, 214, 1);
+
+		.oldnew {
+			width: 78px;
+			height: 26px;
+			font-size: 14.36px;
+			font-weight: 400;
+			color: rgba(165, 165, 165, 1);
+			border: 1px solid rgba(255, 206, 66, 1);
+			border-radius: 11.98px;
+		}
+
+		.oldnew+.oldnew {
+			margin-left: 12px;
+		}
+
+		.oldnew.on {
+			background-color: rgba(255, 206, 66, 1);
+			color: rgba(76, 54, 54, 1);
+			pointer-events: none;
+		}
+	}
+
+	// .discussion_footer
+	&_footer {
+		position: relative;
+		@include d_f(flex);
+		padding: 14px 22px;
+
+		input {
+			width: 100%;
+			height: 37px;
+			padding-left: 4px;
+			background-color: rgba(242, 242, 242, 1);
+			border-radius: 6px;
+			color: rgba(0, 0, 0, 1);
+			font-size: 14.36px;
+			font-weight: 400;
+		}
+
+		input::placeholder {
+			color: rgba(165, 165, 165, 1);
+		}
+
+		input::-webkit-input-placeholder {
+			color: rgba(165, 165, 165, 1);
+		}
+
+		input:-ms-input-placeholder {
+			color: rgba(165, 165, 165, 1);
+		}
+
+		input::-moz-placeholder {
+			color: rgba(165, 165, 165, 1);
+			opacity: 1;
+		}
+
+		.icon_send {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 28px;
+			margin: auto;
+		}
+	}
+
+	// .discussion_item
+	&_item {
+		@include d_f(flex);
+		padding: 12px 20px 17px 30px;
+		border-bottom: 1px solid rgba(211, 213, 214, 1);
+
+		// .discussion_item_pic
+		.pic {
+			flex: none;
+			position: relative;
+			width: 36px;
+			height: 36px;
+			margin-right: 7px;
+			background-color: var(--bg);
+			border-radius: 100%;
+
+			&:after {
+				content: attr(data-txt);
+				position: absolute;
+				@include d_f(flex, center, center);
+				top: 0;
+				bottom: 0;
+				right: 0;
+				left: 0;
+				width: 36px;
+				height: 36px;
+				margin: auto;
+				font-size: 16px;
+				font-weight: 600;
+				color: var(--co);
+				transform: scale(0.85);
+			}
+		}
+
+		// .discussion_item_info
+		&_info {
+			flex: 1 1 100%;
+			margin-right: 8px;
+			color: rgba(0, 0, 0, 1);
+
+			.title {
+				font-size: 14px;
+				font-weight: 700;
+				line-height: 16.94px;
+			}
+
+			.date {
+				font-size: 11px;
+				font-weight: 400;
+				line-height: 15px;
+				color: rgba(190, 192, 194, 0.67);
+			}
+
+			.txt {
+				margin-top: 3px;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 14.52px;
+			}
+		}
+
+		// .discussion_icon
+		&_icon {
+			@include d_f(flex, none, center);
+			height: 24px;
+			flex: none;
+
+			span {
+				margin-right: 3px;
+				font-size: 12px;
+				font-weight: 400;
+				color: rgba(255, 8, 8, 1);
+			}
+		}
+
+		.icon_heart {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
+.icon_send {
+	display: block;
+	width: 24px;
+	height: 24px;
+	background: url('../../images/icon_send.svg')no-repeat center/contain;
+}
+
+.icon_back {
+	width: 30px;
+	height: 30px;
+	padding: 2px 0;
+	background: url('../../images/discussion_back.svg')no-repeat center/contain;
+}
+
+.icon_bar {
+	width: 32px;
+	height: 32px;
+	background: url('../../images/icon_bar.svg')no-repeat center/contain;
+
+}
+
+.icon_heart {
+	display: block;
+	width: 26px;
+	height: 26px;
+	background: url('../../images/icon_heart.svg')no-repeat center/contain;
+
+	&.on {
+		background: url('../../images/icon_heart_on.svg')no-repeat center/contain;
+	}
+}
+
+.tagTitle {
+	position: relative;
+	@include d_f(flex, none, center);
+	height: 40px;
+	padding-top: 94px;
+	padding-left: 25px;
+	font-size: 24px;
+	font-weight: 600;
+
+	.icon_back {
+		width: 32px;
+		height: 32px;
+		background-image: url('../../images/icon_filter_back.svg');
+		background-size: 26px;
+	}
+
+	span {
+		position: relative;
+	}
+
+	span:after {
+		position: absolute;
+		left: 0;
+		top: calc(100% + 5px);
+		content: "文章數： " attr(data-count) "篇";
+		color: rgba(132, 121, 86, 0.8);
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 15.73px;
+		white-space: nowrap;
+	}
+}
+
+
+.fake_btn {
+	z-index: 999;
+	position: absolute;
+	height: 30px;
+	padding: 5px;
+	background-color: aqua;
+
+	&:nth-child(2) {
+		left: 70px;
+	}
 }

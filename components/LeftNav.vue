@@ -7,7 +7,9 @@
 		</label>
 		<div class="leftNav_title">推薦標籤</div>
 		<ul class="leftNav_group">
-			<li class="leftNav_item" v-for="(item, index) in showTag" :key="index"># {{ item }}</li>
+			<li class="leftNav_item" v-for="(item, index) in showTag" :key="index" @click="navHandler(item)">
+				# {{ item }}
+			</li>
 		</ul>
 	</div>
 </template>
@@ -20,13 +22,10 @@ module.exports={
 			navList: []
 		};
 	},
-	mounted() {
-		this.navList=this.$store.state.tags;
-		// console.log(store.state.nowPage);
-	},
-
+	mounted() { },
 	computed: {
 		showTag() {
+			this.navList=this.$store.state.tags;
 			let showObj=[]
 			if (this.filterInp!=="") {
 				this.navList.forEach(element => {
@@ -45,6 +44,9 @@ module.exports={
 	methods: {
 		closeLeftNav() {
 			this.$emit('close-leftnav', false);
+		},
+		navHandler(s){
+			this.$emit('nav-handler', s);
 		}
 	},
 };

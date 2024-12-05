@@ -1,7 +1,7 @@
 <template>
 
 	<div class="content_group">
-		<div class="content_item" v-for="(item, index) in shwoData" :key="index">
+		<div class="content_item" v-for="(item, index) in shwoData" :key="index" @click="itemHandler(item)">
 			<div class="content_item_info">
 				<div class="content_item_title">{{ item.title }}</div>
 				<div class="content_item_name" :data-txt="item.namePic" :style="'--nameBg:' + item.nameColor">{{
@@ -37,61 +37,32 @@
 module.exports={
 	data() {
 		return {
-			dataList: [
-				{
-					id: 0,
-					title: "我很喜歡這次一加一推薦的......",
-					name: "壹人粉",
-					namePic: "1+1",
-					nameColor: "rgba(145, 166, 85, 1)",
-					detail: "一加一真的是一生推，我覺得他們拍的影片都品味，景點安排也很舒服，不知道...",
-					tag: ["自由行", "六日遊", "小資輕旅", "測試"],
-					thumb: 256,
-					picSrc: "",
-				},
-				{
-					id: 1,
-					title: "這次去沖繩遇到kar特！",
-					name: "網紅我最紅",
-					namePic: "網",
-					nameColor: "rgba(255, 8, 8, 1)",
-					detail: "我是你們最愛的網紅！這次太幸運拉，居然偶遇Kar特，他人超好的還願意跟我合照......",
-					tag: ["輕旅行", "沖繩", "網紅", "假資料1", "假資料2", "假資料3", "假資料4", "假資料5", "假資料6"],
-					thumb: 500,
-					picSrc: "",
-				},
-				{
-					id: 2,
-					title: "那個女生今天到我家的店？？",
-					name: "這個男生",
-					namePic: "boy",
-					nameColor: "rgba(66, 25, 107, 1)",
-					detail: "哈囉各位大大，有人知道那個女生這次影片中的店是我家的店嗎？......",
-					tag: ["請益", "那個女生", "提問", "假資料1", "假資料2",],
-					thumb: 50,
-					picSrc: "/images/schedule_pic1.jpg",
-				},
-				{
-					id: 3,
-					title: "大家喜歡去趣app嗎？",
-					name: "去趣小幫手",
-					namePic: "",
-					nameColor: "rgba(0, 157, 223, 1)",
-					detail: "我是去趣小幫手，不知道大家使用去趣app還習慣嗎？......",
-					tag: ["請益", "小助手", "規劃行程", "假資料1", "假資料2",],
-					thumb: 520,
-					picSrc: "/images/schedule_pic2.jpg",
-				},
-			]
+			dataList: []
 		};
 	},
 	mounted() {
-		// console.log(store.state.nowPage);
+		let scheduleLsData=localStorage.getItem('scheduleData');
+		if (!scheduleLsData) {
+			localStorage.setItem('scheduleData', JSON.stringify(this.$store.state.scheduleData));
+			this.dataList=this.$store.state.scheduleData;
+		} else {
+			this.dataList=JSON.parse(scheduleLsData);
+		}
 	},
 	computed: {
 		shwoData() {
 			let objData=[];
 			let filter=this.$store.state.inpFilter;
+			let tagFilter=this.$store.state.tagFilter;
+			if (tagFilter!=="") {
+				this.dataList.forEach(element => {
+					if (element.tag.indexOf(tagFilter)!==-1) {
+						objData.push(element);
+					}
+				});
+				this.$store.dispatch('setShowCount', objData.length);
+				return objData;
+			}
 			if (filter!=="") {
 				this.dataList.forEach(element => {
 					if (element.title.indexOf(filter)!==-1) {
@@ -105,6 +76,22 @@ module.exports={
 		}
 	},
 	methods: {
+		itemHandler(obj) {
+			this.$store.dispatch('setDiscussionData', {
+				id:obj.id,
+				headTitle: "自由討論區",
+				title: obj.title,
+				name: obj.name,
+				namePic: obj.namePic,
+				nameColor: obj.nameColor,
+				date: "2024/09/22",
+				detail: obj.detail,
+				tag: obj.tag,
+				msg: obj.msg
+			});
+			this.$store.dispatch('setDiscussionPage','schedule');
+			this.$router.push('/discussion');
+		},
 	},
 };
 </script>
