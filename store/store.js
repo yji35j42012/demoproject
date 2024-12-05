@@ -11,7 +11,7 @@ const store=Vuex.createStore({
 				detail: "哈囉各位大大，本鯊魚這次要到日本吃生魚片，不知道大家有沒有推薦的餐廳......",
 				tag: ["自由行", "六日遊", "小資旅遊", "假資料1"],
 				thumb: 256,
-				picSrc: "/images/discuss_pic1.jpg",
+				picSrc: "discuss_pic1.jpg",
 				msg: [],
 			},
 			{
@@ -23,7 +23,7 @@ const store=Vuex.createStore({
 				detail: "我是你們最愛的網紅！紛絲好久不見，今天要為大家帶來的是......",
 				tag: ["輕旅行", "府中站", "在地小吃", "假資料1", "假資料2", "假資料3", "假資料4", "假資料5", "假資料6"],
 				thumb: 500,
-				picSrc: "/images/discuss_pic2.jpg",
+				picSrc: "discuss_pic2.jpg",
 				msg: [],
 			},
 			{
@@ -35,7 +35,7 @@ const store=Vuex.createStore({
 				detail: "哈囉各位大大，我是安排行程新手，最近剛出新手村......",
 				tag: ["請益", "個人行", "規劃行程", "假資料1", "假資料2",],
 				thumb: 50,
-				picSrc: "/images/explore_pic3.jpg",
+				picSrc: "explore_pic3.jpg",
 				msg: [],
 			},
 			{
@@ -47,7 +47,7 @@ const store=Vuex.createStore({
 				detail: "我是去趣小幫手，不知道大家使用去趣app還習慣嗎？......",
 				tag: ["請益", "小助手", "規劃行程", "假資料1", "假資料2",],
 				thumb: 520,
-				picSrc: "/images/schedule_pic2.jpg",
+				picSrc: "schedule_pic2.jpg",
 				msg: [],
 			},
 		],
@@ -85,7 +85,7 @@ const store=Vuex.createStore({
 				detail: "哈囉各位大大，有人知道那個女生這次影片中的店是我家的店嗎？......",
 				tag: ["請益", "那個女生", "提問", "假資料1", "假資料2",],
 				thumb: 50,
-				picSrc: "/images/schedule_pic1.jpg",
+				picSrc: "schedule_pic1.jpg",
 				msg: [],
 			},
 			{
@@ -97,7 +97,7 @@ const store=Vuex.createStore({
 				detail: "我是去趣小幫手，不知道大家使用去趣app還習慣嗎？......",
 				tag: ["請益", "小助手", "規劃行程", "假資料1", "假資料2",],
 				thumb: 520,
-				picSrc: "/images/schedule_pic2.jpg",
+				picSrc: "schedule_pic2.jpg",
 				msg: [],
 			},
 		],
@@ -111,7 +111,7 @@ const store=Vuex.createStore({
 				detail: "哈囉各位大大，本鯊魚這次要到韓國吃生章魚腳，不知道大家有沒有推薦的餐......",
 				tag: ["自由行", "六日遊", "小資輕旅", "假資料1"],
 				thumb: 256,
-				picSrc: "/images/discuss_pic1.jpg",
+				picSrc: "discuss_pic1.jpg",
 				msg: [],
 			},
 			{
@@ -123,7 +123,7 @@ const store=Vuex.createStore({
 				detail: "我是你們最愛的網紅！紛絲好久不見，今天要為大家帶來的是......",
 				tag: ["輕旅行", "府中站", "在地小吃", "假資料1", "假資料2", "假資料3", "假資料4", "假資料5", "假資料6"],
 				thumb: 500,
-				picSrc: "/images/discuss_pic2.jpg",
+				picSrc: "discuss_pic2.jpg",
 				msg: [],
 			},
 			{
@@ -147,7 +147,7 @@ const store=Vuex.createStore({
 				detail: "我是去趣小幫手，不知道大家使用去趣app還習慣嗎？......",
 				tag: ["請益", "小助手", "規劃行程", "假資料1", "假資料2",],
 				thumb: 520,
-				picSrc: "/images/schedule_pic2.jpg",
+				picSrc: "schedule_pic2.jpg",
 				msg: [],
 			},
 		],
@@ -172,7 +172,7 @@ const store=Vuex.createStore({
 		// 我們會盡快回覆你的！`,
 		// 			tag: ["請益", "小助手", "規劃行程", "假資料1", "假資料2",],
 		// 			thumb: 520,
-		// 			picSrc: "/images/schedule_pic2.jpg",
+		// 			picSrc: "schedule_pic2.jpg",
 		// 			msg: [
 		// 				{
 		// 					namePic: "艾利",
