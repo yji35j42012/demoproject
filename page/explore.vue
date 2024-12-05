@@ -9,7 +9,7 @@
 				<div class="content_item_detail">{{ item.detail }}</div>
 			</div>
 			<div class="content_item_pic" v-if="item.picSrc">
-				<img :src="item.picSrc" alt="">
+				<img :src="require(item.picSrc)" alt="">
 			</div>
 			<div class="content_item_foot">
 				<ul class="tag">
