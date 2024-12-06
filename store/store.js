@@ -1,6 +1,7 @@
 // 創建 Vuex Store
 const store=Vuex.createStore({
 	state: {
+		version:1.13,
 		exploreData: [
 			{
 				id: 0,

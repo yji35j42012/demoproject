@@ -12,8 +12,6 @@
 <body>
 
 	<div id="app" class="wrap">
-		<!-- <button class="fake_btn" @click="lsHandler('r')">查看ls</button> -->
-		<button class="fake_btn" @click="lsHandler('d')">清除ls</button>
 		<header v-if="showHeader" :class="['header',isTagFilter?'tagFitler':'']" v-if="!isTagFilter">
 			<img src="./images/header.jpg" alt="" class="header_bg">
 			<ul class="navTab" v-if="!isTagFilter">
@@ -133,6 +131,21 @@
 				'left-nav': Vue.defineAsyncComponent(() => loadModule('./components/LeftNav.vue', options))
 			},
 			mounted() {
+				let v=this.$store.state.version
+				let ls_v=localStorage.getItem('hotal_version');
+				vData=JSON.parse(ls_v);
+				if (!vData) {
+					localStorage.removeItem('exploreData');
+					localStorage.removeItem('discussData');
+					localStorage.removeItem('scheduleData');
+					localStorage.setItem('hotal_version', v);
+				}
+				if(vData!==v){
+					localStorage.removeItem('exploreData');
+					localStorage.removeItem('discussData');
+					localStorage.removeItem('scheduleData');
+					localStorage.setItem('hotal_version', v);
+				}
 				let tagsData=this.$store.state.tags;
 				if (tagsData.length==0) {
 					let tagArr=[]
@@ -234,21 +247,6 @@
 				},
 			},
 			methods: {
-				lsHandler(s) {
-					if (s=='r') {
-						const exploreLsData=localStorage.getItem('exploreData');
-						console.log('exploreLsData', exploreLsData);
-						const discussLsData=localStorage.getItem('discussData');
-						console.log('discussLsData', discussLsData);
-						const scheduleLsData=localStorage.getItem('scheduleData');
-						console.log('scheduleLsData', scheduleLsData);
-					} else if (s=='d') {
-						localStorage.removeItem('exploreData');
-						localStorage.removeItem('discussData');
-						localStorage.removeItem('scheduleData');
-					}
-				},
-
 				leftNavHanler() {
 					this.showLeftNav=true;
 				},

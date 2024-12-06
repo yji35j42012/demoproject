@@ -91,7 +91,6 @@ module.exports={
 	},
 	methods: {
 		msgHeart(s) {
-			console.log('mgsHeart', this.disData.msg);
 			let p=this.$store.state.discussionPage
 			let lsData;
 			let objData;
@@ -171,7 +170,6 @@ module.exports={
 				lsData=localStorage.getItem('discussData');
 			}
 			objData=JSON.parse(lsData);
-			console.log('objData',objData);
 			objData.forEach(element => {
 				if (element.id==i) {
 					element.isHeart=!this.disData.isHeart
