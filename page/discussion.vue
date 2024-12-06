@@ -13,7 +13,14 @@
 			</div>
 		</div>
 		<div class="discussion_identity">
-			<div class="discussion_identity_pic" :data-txt="disData.namePic" :style="'--bg:' + disData.nameColor"></div>
+			<template v-if="disData.nameSrc == ''">
+				<div class="discussion_identity_pic" :data-txt="disData.namePic" :style="'--bg:' + disData.nameColor">
+				</div>
+			</template>
+			<template v-else>
+				<img class="discussion_identity_pic" :src="'./images/' + disData.nameSrc" alt="">
+			</template>
+
 			<div class="discussion_identity_info">
 				<div class="name">{{ disData.name }}</div>
 				<div class="date">{{ disData.date }}</div>
@@ -29,8 +36,15 @@
 		</div>
 		<div class="discussion_group">
 			<div class="discussion_item" v-for="(item, index) in showMsg" :key="index">
-				<div class="pic" :data-txt="item.namePic" :style="'--bg:' + item.nameBg + ';--co:' + item.nameTx + ';'">
-				</div>
+				<template v-if="item.nameSic == ''">
+					<div class="pic" :data-txt="item.namePic"
+						:style="'--bg:' + item.nameBg + ';--co:' + item.nameTx + ';'">
+					</div>
+				</template>
+				<template v-else>
+					<img class="pic" :src="'./images/' + item.nameSrc" alt="">
+				</template>
+
 				<div class="discussion_item_info">
 					<div class="title">{{ item.title }}</div>
 					<div class="date">{{ item.date }}</div>
@@ -157,10 +171,16 @@ module.exports={
 				lsData=localStorage.getItem('discussData');
 			}
 			objData=JSON.parse(lsData);
+			console.log('objData',objData);
 			objData.forEach(element => {
 				if (element.id==i) {
 					element.isHeart=!this.disData.isHeart
 					this.disData.isHeart=!this.disData.isHeart
+					if(element.isHeart){
+						element.thumb = element.thumb+1
+					}else{
+						element.thumb = element.thumb-1
+					}
 				}
 			});
 			if (p=='explore') {
@@ -192,6 +212,7 @@ module.exports={
 					element.msg.push({
 						msgId: this.$store.state.discussionData.msg.length+1,
 						namePic: "hi",
+						nameSrc:"id_pic.jpg",
 						nameBg: "rgba(246, 222, 151, 1)",
 						nameTx: "rgba(0, 0, 0, 1)",
 						title: "五條悟",
@@ -203,6 +224,7 @@ module.exports={
 					this.disData.msg.push({
 						msgId: this.$store.state.discussionData.msg.length+1,
 						namePic: "hi",
+						nameSrc:"id_pic.jpg",
 						nameBg: "rgba(246, 222, 151, 1)",
 						nameTx: "rgba(0, 0, 0, 1)",
 						title: "五條悟",

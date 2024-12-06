@@ -3,9 +3,12 @@
 		<div class="content_item" v-for="(item, index) in shwoData" :key="index" @click="itemHandler(item)">
 			<div class="content_item_info">
 				<div class="content_item_title">{{ item.title }}</div>
-				<div class="content_item_name" :data-txt="item.namePic" :style="'--nameBg:' + item.nameColor">{{
-			item.name
-		}}</div>
+				<div class="content_item_name">
+					<span v-if="item.nameSrc == ''"class="txt" :data-txt="item.namePic" :style="'--nameBg:' + item.nameColor"></span>
+					<img v-if="item.nameSrc !== ''" :src="'./images/' + item.nameSrc" alt="">
+					{{ item.name }}
+				</div>
+
 				<div class="content_item_detail">{{ item.detail }}</div>
 			</div>
 			<div class="content_item_pic" v-if="item.picSrc">
@@ -82,6 +85,7 @@ module.exports={
 				title: obj.title,
 				name: obj.name,
 				namePic: obj.namePic,
+				nameSrc: obj.nameSrc,
 				nameColor: obj.nameColor,
 				date: "2024/09/22",
 				detail: obj.detail,

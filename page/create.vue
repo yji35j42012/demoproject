@@ -8,7 +8,7 @@
 		<div class="create_identity">
 			<div class="create_identity_pic"></div>
 			<div class="create_identity_info">
-				<div class="name">選擇發文身份</div>
+				<div class="name">五條悟</div>
 				<div class="date">{{ nowDate }}</div>
 			</div>
 		</div>
@@ -76,6 +76,7 @@ module.exports={
 				title: this.createTitle,
 				name: "五條悟",
 				namePic: "",
+				nameSrc: "id_pic.jpg",
 				nameColor: "rgba(29, 115, 244, 1)",
 				detail: this.createText,
 				tag: tagArr,

@@ -5,7 +5,7 @@
 			<i class="searchInp_icon"></i>
 			<input type="text" placeholder="文章搜尋" v-model="filterInp">
 		</label>
-		<div class="leftNav_title">推薦標籤</div>
+		<div class="leftNav_title">搜尋標籤</div>
 		<ul class="leftNav_group">
 			<li class="leftNav_item" v-for="(item, index) in showTag" :key="index" @click="navHandler(item)">
 				# {{ item }}
