@@ -518,6 +518,7 @@ body {
   width: 36px;
   height: 36px;
   margin-right: 18px;
+  background: url("../../images/id_pic.svg") no-repeat center/contain;
 }
 .create_identity_info .name {
   display: flex;
