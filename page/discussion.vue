@@ -155,7 +155,6 @@ module.exports={
 			objData=JSON.parse(lsData);
 			objData.forEach(element => {
 				if (element.id==i) {
-					console.log('adsfasdf', element);
 					element.msg.push({
 						namePic: "hi",
 						nameBg: "rgba(246, 222, 151, 1)",
