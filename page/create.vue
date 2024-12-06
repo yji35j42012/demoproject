@@ -9,7 +9,7 @@
 			<div class="create_identity_pic"></div>
 			<div class="create_identity_info">
 				<div class="name">選擇發文身份</div>
-				<div class="date">{{nowDate}}</div>
+				<div class="date">{{ nowDate }}</div>
 			</div>
 		</div>
 		<label class="create_h1">
@@ -25,9 +25,6 @@
 		</label>
 
 	</div>
-	<div class="create_footer">
-		<img src="/images/create_footer.jpg" alt="">
-	</div>
 </template>
 
 <script>
@@ -37,7 +34,7 @@ module.exports={
 			createTitle: "",
 			createText: "",
 			createHash: "",
-			nowDate:''
+			nowDate: ''
 		};
 	},
 	mounted() {

@@ -12,8 +12,6 @@
 <body>
 
 	<div id="app" class="wrap">
-		<button class="fake_btn" @click="lsHandler('r')">查看ls</button>
-		<button class="fake_btn" @click="lsHandler('d')">清除ls</button>
 		<header v-if="showHeader" :class="['header',isTagFilter?'tagFitler':'']" v-if="!isTagFilter">
 			<img src="./images/header.jpg" alt="" class="header_bg">
 			<ul class="navTab" v-if="!isTagFilter">
@@ -49,6 +47,9 @@
 		<footer v-if="showFooter" class="footer">
 			<img src="./images/footer.jpg" alt="">
 		</footer>
+		<div v-if="!showFooter" class="create_footer">
+			<img src="./images/create_footer.jpg" alt="">
+		</div>
 		<button v-if="showIconAdd" class="icon_add" @click="createHandler"></button>
 	</div>
 	<script src="https://unpkg.com/vue@latest"></script>
@@ -222,20 +223,6 @@
 				},
 			},
 			methods: {
-				lsHandler(s) {
-					if (s=='r') {
-						const exploreLsData=localStorage.getItem('exploreData');
-						console.log('exploreLsData',exploreLsData);
-						const discussLsData=localStorage.getItem('discussData');
-						console.log('discussLsData',discussLsData);
-						const scheduleLsData=localStorage.getItem('scheduleData');
-						console.log('scheduleLsData',scheduleLsData);
-					} else if (s=='d') {
-						localStorage.removeItem('exploreData');
-						localStorage.removeItem('discussData');
-						localStorage.removeItem('scheduleData');
-					}
-				},
 				leftNavHanler() {
 					this.showLeftNav=true;
 				},
