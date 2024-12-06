@@ -7,7 +7,7 @@
 	<div class="create_body">
 		<div class="create_identity">
 			<div class="create_identity_pic">
-				<img src="/images/id_pic.svg" alt="">
+				<img src="./images/id_pic.svg" alt="">
 			</div>
 			<div class="create_identity_info">
 				<div class="name">選擇發文身份</div>
