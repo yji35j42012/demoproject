@@ -47,7 +47,7 @@
 		<footer v-if="showFooter" class="footer">
 			<img src="./images/footer.jpg" alt="">
 		</footer>
-		<div v-if="!showFooter" class="create_footer">
+		<div v-if="showCretaeFooter" class="create_footer">
 			<img src="./images/create_footer.jpg" alt="">
 		</div>
 		<button v-if="showIconAdd" class="icon_add" @click="createHandler"></button>
@@ -123,6 +123,7 @@
 					showFooter: true,
 					showIconAdd: true,
 					isTagFilter: false,
+					showCretaeFooter: false,
 					tagTitle: "",
 				};
 			},
@@ -207,6 +208,13 @@
 					} else {
 						this.nowPage=now.split("/")[1];
 					}
+
+					if (this.nowPage=='create') {
+						this.showCretaeFooter=true
+					}
+					if (this.nowPage=='discussion') {
+						this.showCretaeFooter=false
+					}
 					if (this.nowPage=='create'||this.nowPage=='discussion') {
 						this.showHeader=false
 						this.showPageTab=false
@@ -219,6 +227,7 @@
 						this.showContentHead=true
 						this.showFooter=true
 						this.showIconAdd=true
+						this.showCretaeFooter=false
 					}
 				},
 			},
