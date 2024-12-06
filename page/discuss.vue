@@ -88,7 +88,9 @@ module.exports={
 				date: "2024/09/22",
 				detail: obj.detail,
 				tag: obj.tag,
-				msg: obj.msg
+				msg: obj.msg,
+				isCollect: obj.isCollect,
+				isHeart: obj.isHeart,
 			});
 			this.$store.dispatch('setDiscussionPage', 'discuss');
 			this.$router.push('/discussion');

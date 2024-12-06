@@ -8,8 +8,8 @@
 		<div class="discussion_h1">
 			<span>{{ disData.title }}</span>
 			<div class="discussion_iconBox">
-				<button class="icon_heart"></button>
-				<button class="icon_collect on"></button>
+				<button :class="['icon_heart', disData.isHeart ? 'on' : '']" @click="heartHandler"></button>
+				<button :class="['icon_collect', disData.isCollect ? 'on' : '']" @click="collectHandler"></button>
 			</div>
 		</div>
 		<div class="discussion_identity">
@@ -64,11 +64,10 @@ module.exports={
 		} else {
 			this.disData=this.$store.state.discussionData
 		}
-
 	},
 	computed: {
 		showMsg() {
-			if(!this.disData.msg) return
+			if (!this.disData.msg) return
 			if (this.isNew) {
 				return [...this.disData.msg].reverse();
 			} else {
@@ -77,12 +76,69 @@ module.exports={
 		}
 	},
 	methods: {
-		oldnew() {
-			this.isNew=!this.isNew
+		getDate() {
+			const currentDate=new Date();
+			const year=currentDate.getFullYear();
+			const month=currentDate.getMonth()+1;
+			const day=currentDate.getDate();
+			return year+"/"+month+"/"+day
 		},
-		goExplore() {
-			this.$router.push('/explore');
+		collectHandler() {
+			let p=this.$store.state.discussionPage
+			let lsData;
+			let objData;
+			let i=this.disData.id;
+			if (p=='explore') {
+				lsData=localStorage.getItem('exploreData');
+			} else if (p=='schedule') {
+				lsData=localStorage.getItem('scheduleData');
+			} else if (p=='discuss') {
+				lsData=localStorage.getItem('discussData');
+			}
+			objData=JSON.parse(lsData);
+			objData.forEach(element => {
+				if (element.id==i) {
+					element.isCollect=!this.disData.isCollect
+					this.disData.isCollect=!this.disData.isCollect
+				}
+			});
+			if (p=='explore') {
+				localStorage.setItem('exploreData', JSON.stringify(objData));
+			} else if (p=='schedule') {
+				localStorage.setItem('scheduleData', JSON.stringify(objData));
+			} else if (p=='discuss') {
+				localStorage.setItem('discussData', JSON.stringify(objData));
+			}
 		},
+		heartHandler() {
+			let p=this.$store.state.discussionPage
+			let lsData;
+			let objData;
+			let i=this.disData.id;
+			if (p=='explore') {
+				lsData=localStorage.getItem('exploreData');
+			} else if (p=='schedule') {
+				lsData=localStorage.getItem('scheduleData');
+			} else if (p=='discuss') {
+				lsData=localStorage.getItem('discussData');
+			}
+			objData=JSON.parse(lsData);
+			objData.forEach(element => {
+				if (element.id==i) {
+					element.isHeart=!this.disData.isHeart
+					this.disData.isHeart=!this.disData.isHeart
+				}
+			});
+			if (p=='explore') {
+				localStorage.setItem('exploreData', JSON.stringify(objData));
+			} else if (p=='schedule') {
+				localStorage.setItem('scheduleData', JSON.stringify(objData));
+			} else if (p=='discuss') {
+				localStorage.setItem('discussData', JSON.stringify(objData));
+			}
+		},
+		oldnew() { this.isNew=!this.isNew },
+		goExplore() { this.$router.push('/explore'); },
 		send() {
 			if (this.msg=="") return
 			let p=this.$store.state.discussionPage;
@@ -105,7 +161,7 @@ module.exports={
 						nameBg: "rgba(246, 222, 151, 1)",
 						nameTx: "rgba(0, 0, 0, 1)",
 						title: "五條悟",
-						date: "2024/09/22",
+						date: this.getDate(),
 						detail: this.msg,
 						heartCount: 0,
 						isHeart: false
@@ -115,7 +171,7 @@ module.exports={
 						nameBg: "rgba(246, 222, 151, 1)",
 						nameTx: "rgba(0, 0, 0, 1)",
 						title: "五條悟",
-						date: "2024/09/22",
+						date: this.getDate(),
 						detail: this.msg,
 						heartCount: 0,
 						isHeart: false
@@ -129,6 +185,7 @@ module.exports={
 			} else if (p=='discuss') {
 				localStorage.setItem('discussData', JSON.stringify(objData));
 			}
+			this.msg=""
 		}
 	},
 };

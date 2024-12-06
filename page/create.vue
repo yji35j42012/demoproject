@@ -11,7 +11,7 @@
 			</div>
 			<div class="create_identity_info">
 				<div class="name">選擇發文身份</div>
-				<div class="date">2024/09/22</div>
+				<div class="date">{{nowDate}}</div>
 			</div>
 		</div>
 		<label class="create_h1">
@@ -39,18 +39,32 @@ module.exports={
 			createTitle: "",
 			createText: "",
 			createHash: "",
+			nowDate:''
 		};
 	},
 	mounted() {
+		this.nowDate=this.getDate()
 	},
 	computed: {
 	},
 	methods: {
 
+		getDate() {
+			const currentDate=new Date();
+			const year=currentDate.getFullYear();
+			const month=currentDate.getMonth()+1;
+			const day=currentDate.getDate();
+			return year+"/"+month+"/"+day
+		},
 		back() {
 			history.go(-1);
 		},
 		goDiscussion() {
+			if (this.createTitle==""||this.createText==""||this.createHash=="") {
+				alert('內容請勿空白');
+				return;
+			}
+
 			let exploreLsData=localStorage.getItem('exploreData');
 			let exploreObj=JSON.parse(exploreLsData);
 			let tagArr=this.createHash.split(",")
@@ -65,14 +79,17 @@ module.exports={
 			let newObj={
 				id: exploreObj.length,
 				title: this.createTitle,
-				name: "發文身份",
+				name: "五條悟",
 				namePic: "",
 				nameColor: "rgba(29, 115, 244, 1)",
 				detail: this.createText,
 				tag: tagArr,
 				thumb: 0,
 				picSrc: "",
-				msg: []
+				msg: [],
+				isCollect: false,
+				isHeart: false,
+				date: this.getDate(),
 			}
 			exploreObj.push(newObj)
 			localStorage.setItem('exploreData', JSON.stringify(exploreObj));

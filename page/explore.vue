@@ -9,7 +9,7 @@
 				<div class="content_item_detail">{{ item.detail }}</div>
 			</div>
 			<div class="content_item_pic" v-if="item.picSrc">
-				<img :src="'./images/'+item.picSrc" alt="">
+				<img :src="'./images/' + item.picSrc" alt="">
 			</div>
 			<div class="content_item_foot">
 				<ul class="tag">
@@ -25,7 +25,7 @@
 				</ul>
 				<div class="iconBox">
 					<i class="iconBox_icon icon_thumb" :data-num="item.thumb"></i>
-					<i class="iconBox_icon icon_collect"></i>
+					<i :class="['iconBox_icon', 'icon_collect', item.isCollect ? 'on' : '']"></i>
 				</div>
 			</div>
 		</div>
@@ -86,7 +86,9 @@ module.exports={
 				date: "2024/09/22",
 				detail: obj.detail,
 				tag: obj.tag,
-				msg: obj.msg
+				msg: obj.msg,
+				isCollect: obj.isCollect,
+				isHeart: obj.isHeart,
 			});
 			this.$store.dispatch('setDiscussionPage', 'explore');
 			this.$router.push('/discussion');

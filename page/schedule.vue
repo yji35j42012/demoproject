@@ -10,7 +10,7 @@
 				<div class="content_item_detail">{{ item.detail }}</div>
 			</div>
 			<div class="content_item_pic" v-if="item.picSrc">
-				<img :src="'./images/'+item.picSrc" alt="">
+				<img :src="'./images/' + item.picSrc" alt="">
 			</div>
 			<div class="content_item_foot">
 				<ul class="tag">
@@ -78,7 +78,7 @@ module.exports={
 	methods: {
 		itemHandler(obj) {
 			this.$store.dispatch('setDiscussionData', {
-				id:obj.id,
+				id: obj.id,
 				headTitle: "自由討論區",
 				title: obj.title,
 				name: obj.name,
@@ -87,9 +87,11 @@ module.exports={
 				date: "2024/09/22",
 				detail: obj.detail,
 				tag: obj.tag,
-				msg: obj.msg
+				msg: obj.msg,
+				isCollect: obj.isCollect,
+				isHeart: obj.isHeart,
 			});
-			this.$store.dispatch('setDiscussionPage','schedule');
+			this.$store.dispatch('setDiscussionPage', 'schedule');
 			this.$router.push('/discussion');
 		},
 	},

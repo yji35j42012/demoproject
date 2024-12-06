@@ -705,6 +705,7 @@ body {
 .discussion_iconBox .icon_collect {
   width: 33px;
   height: 33px;
+  margin-left: 8px;
   background-size: 24px;
 }
 .discussion_iconBox .icon_heart {
