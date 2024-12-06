@@ -38,7 +38,7 @@
 				</div>
 				<div class="discussion_item_icon">
 					<span v-if="item.isHeart">{{ item.heartCount }}</span>
-					<button :class="['icon_heart', item.isHeart ? 'on' : '']"></button>
+					<button :class="['icon_heart', item.isHeart ? 'on' : '']" @click="msgHeart(item.msgId)"></button>
 				</div>
 			</div>
 		</div>
@@ -76,6 +76,39 @@ module.exports={
 		}
 	},
 	methods: {
+		msgHeart(s) {
+			console.log('mgsHeart', this.disData.msg);
+			let p=this.$store.state.discussionPage
+			let lsData;
+			let objData;
+			let ii=this.disData.id;
+			if (p=='explore') {
+				lsData=localStorage.getItem('exploreData');
+			} else if (p=='schedule') {
+				lsData=localStorage.getItem('scheduleData');
+			} else if (p=='discuss') {
+				lsData=localStorage.getItem('discussData');
+			}
+			objData=JSON.parse(lsData);
+			// 
+			for (let i=0; i<objData.length; i++) {
+				if (objData[i].id==ii) {
+					for (let j=0; j<objData[i].msg.length; j++) {
+						if (objData[i].msg[j].msgId==s) {
+							objData[i].msg[j].isHeart=!this.disData.msg[j].isHeart
+							this.disData.msg[j].isHeart=!this.disData.msg[j].isHeart
+						}
+					}
+				}
+			}
+			if (p=='explore') {
+				localStorage.setItem('exploreData', JSON.stringify(objData));
+			} else if (p=='schedule') {
+				localStorage.setItem('scheduleData', JSON.stringify(objData));
+			} else if (p=='discuss') {
+				localStorage.setItem('discussData', JSON.stringify(objData));
+			}
+		},
 		getDate() {
 			const currentDate=new Date();
 			const year=currentDate.getFullYear();
@@ -100,6 +133,7 @@ module.exports={
 				if (element.id==i) {
 					element.isCollect=!this.disData.isCollect
 					this.disData.isCollect=!this.disData.isCollect
+
 				}
 			});
 			if (p=='explore') {
@@ -156,23 +190,25 @@ module.exports={
 			objData.forEach(element => {
 				if (element.id==i) {
 					element.msg.push({
+						msgId: this.$store.state.discussionData.msg.length+1,
 						namePic: "hi",
 						nameBg: "rgba(246, 222, 151, 1)",
 						nameTx: "rgba(0, 0, 0, 1)",
 						title: "五條悟",
 						date: this.getDate(),
 						detail: this.msg,
-						heartCount: 0,
+						heartCount: 1,
 						isHeart: false
 					})
 					this.disData.msg.push({
+						msgId: this.$store.state.discussionData.msg.length+1,
 						namePic: "hi",
 						nameBg: "rgba(246, 222, 151, 1)",
 						nameTx: "rgba(0, 0, 0, 1)",
 						title: "五條悟",
 						date: this.getDate(),
 						detail: this.msg,
-						heartCount: 0,
+						heartCount: 1,
 						isHeart: false
 					})
 				}
