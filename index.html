@@ -12,6 +12,8 @@
 <body>
 
 	<div id="app" class="wrap">
+		<button class="fake_btn" @click="lsHandler('r')">查看ls2</button>
+		<button class="fake_btn" @click="lsHandler('d')">清除ls2</button>
 		<header v-if="showHeader" :class="['header',isTagFilter?'tagFitler':'']" v-if="!isTagFilter">
 			<img src="./images/header.jpg" alt="" class="header_bg">
 			<ul class="navTab" v-if="!isTagFilter">
@@ -220,6 +222,20 @@
 				},
 			},
 			methods: {
+				lsHandler(s) {
+					if (s=='r') {
+						const exploreLsData=localStorage.getItem('exploreData');
+						console.log('exploreLsData',exploreLsData);
+						const discussLsData=localStorage.getItem('discussData');
+						console.log('discussLsData',discussLsData);
+						const scheduleLsData=localStorage.getItem('scheduleData');
+						console.log('scheduleLsData',scheduleLsData);
+					} else if (s=='d') {
+						localStorage.removeItem('exploreData');
+						localStorage.removeItem('discussData');
+						localStorage.removeItem('scheduleData');
+					}
+				},
 				leftNavHanler() {
 					this.showLeftNav=true;
 				},
