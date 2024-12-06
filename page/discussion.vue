@@ -174,10 +174,10 @@ module.exports={
 				if (element.id==i) {
 					element.isHeart=!this.disData.isHeart
 					this.disData.isHeart=!this.disData.isHeart
-					if(element.isHeart){
-						element.thumb = element.thumb+1
-					}else{
-						element.thumb = element.thumb-1
+					if (element.isHeart) {
+						element.thumb=element.thumb+1
+					} else {
+						element.thumb=element.thumb-1
 					}
 				}
 			});
@@ -210,7 +210,7 @@ module.exports={
 					element.msg.push({
 						msgId: this.$store.state.discussionData.msg.length+1,
 						namePic: "hi",
-						nameSrc:"id_pic.jpg",
+						nameSrc: "id_pic.jpg",
 						nameBg: "rgba(246, 222, 151, 1)",
 						nameTx: "rgba(0, 0, 0, 1)",
 						title: "五條悟",
@@ -222,7 +222,7 @@ module.exports={
 					this.disData.msg.push({
 						msgId: this.$store.state.discussionData.msg.length+1,
 						namePic: "hi",
-						nameSrc:"id_pic.jpg",
+						nameSrc: "id_pic.jpg",
 						nameBg: "rgba(246, 222, 151, 1)",
 						nameTx: "rgba(0, 0, 0, 1)",
 						title: "五條悟",
